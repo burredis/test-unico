@@ -18,6 +18,22 @@ func (s FeiraLivreService) Create(f FeiraLivre) error {
 	return s.repo.Insert(f)
 }
 
-func (s FeiraLivreService) List() []FeiraLivre {
-	return s.repo.List()
+func (s FeiraLivreService) Search() []FeiraLivre {
+	return s.repo.Search()
+}
+
+func (s FeiraLivreService) FindById(id int) FeiraLivre {
+	return s.repo.FindById(id)
+}
+
+func (s FeiraLivreService) Update(id int, f FeiraLivre) error {
+	if err := f.Validate(); err != nil {
+		return err
+	}
+
+	return s.repo.Update(id, f)
+}
+
+func (s FeiraLivreService) Remove(id int) error {
+	return s.repo.Remove(id)
 }

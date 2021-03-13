@@ -31,8 +31,8 @@ func main() {
 
 	f := e.Group("feiraslivres")
 	f.GET("", adapter.SearchHTTPHandler)
-	f.GET("/:id", adapter.GetHTTPHandler)
 	f.POST("", adapter.CreateHTTPHandler)
+	f.GET("/:id", adapter.GetHTTPHandler)
 	f.PATCH("/:id", adapter.UpdateHTTPHandler)
 	f.DELETE("/:id", adapter.RemoveHTTPHandler)
 
