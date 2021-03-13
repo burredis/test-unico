@@ -14,12 +14,11 @@ func (s FeiraLivreService) Create(f FeiraLivre) error {
 	if err := f.Validate(); err != nil {
 		return err
 	}
-
 	return s.repo.Insert(f)
 }
 
-func (s FeiraLivreService) Search() []FeiraLivre {
-	return s.repo.Search()
+func (s FeiraLivreService) Search(q string) []FeiraLivre {
+	return s.repo.Search(q)
 }
 
 func (s FeiraLivreService) FindById(id int) FeiraLivre {
@@ -30,7 +29,6 @@ func (s FeiraLivreService) Update(id int, f FeiraLivre) error {
 	if err := f.Validate(); err != nil {
 		return err
 	}
-
 	return s.repo.Update(id, f)
 }
 

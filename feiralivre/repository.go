@@ -80,12 +80,23 @@ func (r FeiraLivreRepository) Insert(f FeiraLivre) error {
 	return nil
 }
 
-func (r FeiraLivreRepository) Search() []FeiraLivre {
+func qlike(s string) string {
+	fmt.Println("%" + s + "%")
+	return "%" + s + "%"
+}
+
+func (r FeiraLivreRepository) Search(q string) []FeiraLivre {
 	results := make([]FeiraLivre, 0)
-	rows, err := r.db.Query("SELECT * FROM feiraslivres ORDER BY id")
+	stmt, err := r.db.Prepare(`
+		SELECT * 
+			FROM feiraslivres 
+			WHERE nome LIKE ? OR distrito LIKE ? OR regiao5 LIKE ? OR bairro LIKE ?`)
 	if err != nil {
 		fmt.Println(err)
 	}
+	rows, err := stmt.Query(
+		qlike(q), qlike(q), qlike(q), qlike(q),
+	)
 	for rows.Next() {
 		f := FeiraLivre{}
 		err := f.scanColumns(rows)
@@ -98,7 +109,11 @@ func (r FeiraLivreRepository) Search() []FeiraLivre {
 }
 
 func (r FeiraLivreRepository) FindById(id int) FeiraLivre {
-	rows, err := r.db.Query("SELECT * FROM feiraslivres WHERE id=? LIMIT 1", id)
+	rows, err := r.db.Query(`
+		SELECT * 
+			FROM feiraslivres 
+			WHERE id=? 
+			LIMIT 1`, id)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -153,7 +168,11 @@ func (r FeiraLivreRepository) Update(id int, f FeiraLivre) error {
 
 func (r FeiraLivreRepository) Remove(id int) error {
 	tx, _ := r.db.Begin()
-	stmt, err := r.db.Prepare(`DELETE FROM feiraslivres WHERE id=?`)
+	stmt, err := r.db.Prepare(`
+		DELETE 
+			FROM feiraslivres 
+			WHERE id=?
+		`)
 	if err != nil {
 		fmt.Println("Remove:Prepare", err)
 		return err
