@@ -1,0 +1,9 @@
+version: "3"
+services:
+  unico:
+    container_name: golang
+    build: .
+    volumes:
+      - ./:/unico
+    ports:
+      - 8000:8000
