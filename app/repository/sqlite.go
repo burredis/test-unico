@@ -13,8 +13,8 @@ type sqlite struct {
 	db *sql.DB
 }
 
-func Conn(database string) (db *sql.DB) {
-	db, err := sql.Open("sqlite3", database)
+func Conn() (db *sql.DB) {
+	db, err := sql.Open("sqlite3", "./unico.db")
 	if err != nil {
 		panic(err)
 	}
@@ -30,13 +30,13 @@ func (s *sqlite) init(filename string) {
 	// Read file
 	content, err := ioutil.ReadFile(filename)
 	if err != nil {
-			fmt.Println(err.Error())
+		fmt.Println(err.Error())
 	}
 	// Execute all
 	_, err = s.db.Exec(string(content))
 	if err != nil {
-			fmt.Println(err.Error())
-	} 
+		fmt.Println(err.Error())
+	}
 }
 
 func (s *sqlite) load(filename string) {
@@ -51,12 +51,12 @@ func (s *sqlite) load(filename string) {
 			} else {
 				values = values + `"` + line[j] + `"`
 			}
-			if j < len(line) - 1 {
+			if j < len(line)-1 {
 				values = values + ","
 			}
 		}
 		values = values + ")"
-		if i < len(records) - 1	 {
+		if i < len(records)-1 {
 			values = values + ","
 		}
 	}
@@ -64,6 +64,6 @@ func (s *sqlite) load(filename string) {
 	// io.Writefile(loadfile, data)
 	_, err := s.db.Exec(into + values)
 	if err != nil {
-			fmt.Println(err.Error())
+		fmt.Println(err.Error())
 	}
-} 
+}

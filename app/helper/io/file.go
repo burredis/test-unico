@@ -1,9 +1,9 @@
 package io
 
 import (
-	"os"
-	"log"
 	"fmt"
+	"log"
+	"os"
 )
 
 func Writefile(file string, data string) {

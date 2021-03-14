@@ -1,0 +1,251 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "\"A RESTful API made with Golang and SQLite\"",
+        "title": "unico",
+        "contact": {
+            "email": "burredis@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Check the api health",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/feiralivre": {
+            "get": {
+                "description": "Search item by query",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Search by distrito or regiao5 or nome or bairro",
+                        "name": "q",
+                        "in": "query"
+                    }
+                ]
+            },
+            "post": {
+                "description": "Create a new item",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API"
+                ],
+                "parameters": [
+                    {
+                        "description": " ",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/feiralivre.FeiraLivre"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/feiralivre/:id": {
+            "get": {
+                "description": "Get item by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Remove item by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API"
+                ],
+                "responses": {
+                    "202": {
+                        "description": ""
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update item by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API"
+                ],
+                "parameters": [
+                    {
+                        "description": " ",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/feiralivre.FeiraLivre"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "app.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "feiralivre.FeiraLivre": {
+            "type": "object",
+            "properties": {
+                "areap": {
+                    "type": "string"
+                },
+                "bairro": {
+                    "type": "string"
+                },
+                "coddist": {
+                    "type": "string"
+                },
+                "codsubpref": {
+                    "type": "string"
+                },
+                "distrito": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lat": {
+                    "type": "string"
+                },
+                "lng": {
+                    "type": "string"
+                },
+                "logradouro": {
+                    "type": "string"
+                },
+                "nome": {
+                    "type": "string"
+                },
+                "numero": {
+                    "type": "string"
+                },
+                "referencia": {
+                    "type": "string"
+                },
+                "regiao5": {
+                    "type": "string"
+                },
+                "regiao8": {
+                    "type": "string"
+                },
+                "registro": {
+                    "type": "string"
+                },
+                "setcens": {
+                    "type": "string"
+                },
+                "subprefe": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

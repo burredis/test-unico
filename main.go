@@ -4,7 +4,6 @@ import (
 	"net/http"
 	"unico/app"
 	"unico/app/repository"
-	"unico/app/helper/io"
 	"unico/feiralivre"
 
 	echo "github.com/labstack/echo/v4"
@@ -13,8 +12,11 @@ import (
 	_ "github.com/swaggo/echo-swagger/example/docs"
 )
 
-// @title RESTful API em Golang e SQLite
+// @title unico
+// @description "A RESTful API made with Golang and SQLite"
 // @version 1.0
+
+// @contact.email burredis@gmail.com
 
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
@@ -22,9 +24,7 @@ import (
 // @host localhost:8000
 // @BasePath /
 func main() {
-	database := "./unico.db"
-	io.Removefile(database)
-	db := repository.Conn(database)
+	db := repository.Conn()
 	defer db.Close()
 
 	e := echo.New()
@@ -49,9 +49,17 @@ func main() {
 	f.DELETE("/:id", adapter.RemoveHTTPHandler)
 
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
+	e.File("/swagger/doc.json", "./docs/swagger.json") // FIX TO LOAD CORRECT FILE JSON
 	e.Logger.Fatal(e.Start(":8000"))
 }
 
+// healthHTTPHandler godoc
+// @Description Check the api health
+// @Tags API
+// @Accept json
+// @Success 200 {object} app.Response
+// @Failure 400 {object} app.Response
+// @Router / [get]
 //HealthHTTPHandler greatings
 func healthHTTPHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, app.ResponseMessage("I'm good, tks!"))
