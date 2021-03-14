@@ -81,7 +81,6 @@ func (r FeiraLivreRepository) Insert(f FeiraLivre) error {
 }
 
 func qlike(s string) string {
-	fmt.Println("%" + s + "%")
 	return "%" + s + "%"
 }
 
@@ -105,6 +104,7 @@ func (r FeiraLivreRepository) Search(q string) []FeiraLivre {
 		}
 		results = append(results, f)
 	}
+	rows.Close()
 	return results
 }
 
@@ -124,6 +124,7 @@ func (r FeiraLivreRepository) FindById(id int) FeiraLivre {
 			fmt.Println(err)
 		}
 	}
+	rows.Close()
 	return f
 }
 

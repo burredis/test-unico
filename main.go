@@ -2,7 +2,9 @@ package main
 
 import (
 	"net/http"
+	"unico/app"
 	"unico/app/repository"
+	"unico/app/helper/io"
 	"unico/feiralivre"
 
 	"github.com/labstack/echo"
@@ -10,19 +12,19 @@ import (
 )
 
 func main() {
-	e := echo.New()
+	database := "./unico.db"
+	io.Removefile(database)
+	db := repository.Conn(database)
+	defer db.Close()
 
+	e := echo.New()
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
 		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAuthorization},
 	}))
-
-	// e.GET("/", healthHTTPHandler)
-
-	db := repository.Conn()
-	defer db.Close()
+	e.GET("/", healthHTTPHandler)
 
 	// feira livres
 	repo := feiralivre.NewRepository(db)
@@ -41,5 +43,5 @@ func main() {
 
 //HealthHTTPHandler greatings
 func healthHTTPHandler(c echo.Context) error {
-	return c.String(http.StatusOK, "Sounds good!")
+	return c.JSON(http.StatusOK, app.ResponseMessage("I'm good, tks!"))
 }

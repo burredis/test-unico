@@ -7,14 +7,14 @@ type Response struct {
 }
 
 //Response normalized error return
-func ResponseError(message string) Response {
+func ResponseMessage(message string) Response {
 	return Response{
 		Message: message,
 	}
 }
 
-//Response normalized success return
-func ResponseSuccess(data interface{}) Response {
+//Response normalized data return
+func ResponseData(data interface{}) Response {
 	return Response{
 		Data: data,
 	}
