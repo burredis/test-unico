@@ -60,8 +60,6 @@ func (s *sqlite) load(filename string) {
 			values = values + ","
 		}
 	}
-	// loadfile := "./load.sql"
-	// io.Writefile(loadfile, data)
 	_, err := s.db.Exec(into + values)
 	if err != nil {
 		fmt.Println(err.Error())

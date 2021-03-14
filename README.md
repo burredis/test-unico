@@ -14,6 +14,17 @@ Para utilizar o projeto é preciso realizar os passos a seguir:
 
     make run
 
+## Teste
+Para executar os testes unitários utilize os comandos a seguir:
+
+##### io
+
+    go test -v unico/app/helper/io
+
+##### feiralivre
+
+    go test -v unico/feiralivre
+
 ## Documentação
 http://localhost:8000/swagger/index.html
 
