@@ -234,11 +234,11 @@ http://localhost:8000/swagger/index.html
 ## Teste
 Para executar os testes unitários utilize os comandos a seguir:
 
-##### io
+##### Package io
 
     go test -v unico/app/helper/io
 
-##### feiralivre
+##### Package feiralivre
 
     go test -v unico/feiralivre
 
