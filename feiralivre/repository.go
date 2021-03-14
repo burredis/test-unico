@@ -2,7 +2,7 @@ package feiralivre
 
 import (
 	"database/sql"
-	"fmt"
+	"unico/app"
 )
 
 type FeiraLivreRepository struct {
@@ -50,7 +50,7 @@ func (r FeiraLivreRepository) Insert(f FeiraLivre) error {
 			VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
 	`)
 	if err != nil {
-		fmt.Println("Insert:Prepare", err)
+		app.ErrorLogger.Println(err)
 		return err
 	}
 	_, err = stmt.Exec(
@@ -73,7 +73,7 @@ func (r FeiraLivreRepository) Insert(f FeiraLivre) error {
 	)
 	if err != nil {
 		tx.Rollback()
-		fmt.Println("Insert:exec", err)
+		app.ErrorLogger.Println(err)
 		return err
 	}
 	tx.Commit()
@@ -91,7 +91,7 @@ func (r FeiraLivreRepository) Search(q string) []FeiraLivre {
 			FROM feiraslivres 
 			WHERE nome LIKE ? OR distrito LIKE ? OR regiao5 LIKE ? OR bairro LIKE ?`)
 	if err != nil {
-		fmt.Println(err)
+		app.ErrorLogger.Println(err)
 	}
 	rows, err := stmt.Query(
 		qlike(q), qlike(q), qlike(q), qlike(q),
@@ -100,7 +100,7 @@ func (r FeiraLivreRepository) Search(q string) []FeiraLivre {
 		f := FeiraLivre{}
 		err := f.scanColumns(rows)
 		if err != nil {
-			fmt.Println(err)
+			app.ErrorLogger.Println(err)
 		}
 		results = append(results, f)
 	}
@@ -115,13 +115,13 @@ func (r FeiraLivreRepository) FindById(id int) FeiraLivre {
 			WHERE id=? 
 			LIMIT 1`, id)
 	if err != nil {
-		fmt.Println(err)
+		app.ErrorLogger.Println(err)
 	}
 	f := FeiraLivre{}
 	for rows.Next() {
 		err := f.scanColumns(rows)
 		if err != nil {
-			fmt.Println(err)
+			app.ErrorLogger.Println(err)
 		}
 	}
 	rows.Close()
@@ -136,7 +136,7 @@ func (r FeiraLivreRepository) Update(id int, f FeiraLivre) error {
 			WHERE id=?
 	`)
 	if err != nil {
-		fmt.Println("Update:Prepare", err)
+		app.ErrorLogger.Println(err)
 		return err
 	}
 	_, err = stmt.Exec(
@@ -160,7 +160,7 @@ func (r FeiraLivreRepository) Update(id int, f FeiraLivre) error {
 	)
 	if err != nil {
 		tx.Rollback()
-		fmt.Println("Update:exec", err)
+		app.ErrorLogger.Println(err)
 		return err
 	}
 	tx.Commit()
@@ -175,13 +175,13 @@ func (r FeiraLivreRepository) Remove(id int) error {
 			WHERE id=?
 		`)
 	if err != nil {
-		fmt.Println("Remove:Prepare", err)
+		app.ErrorLogger.Println(err)
 		return err
 	}
 	_, err = stmt.Exec(id)
 	if err != nil {
 		tx.Rollback()
-		fmt.Println("Remove:exec", err)
+		app.ErrorLogger.Println(err)
 		return err
 	}
 	tx.Commit()

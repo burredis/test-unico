@@ -2,8 +2,8 @@ package repository
 
 import (
 	"database/sql"
-	"fmt"
 	"io/ioutil"
+	"unico/app"
 	"unico/app/helper/io"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -21,6 +21,7 @@ func Conn() (db *sql.DB) {
 	x := sqlite{
 		db: db,
 	}
+	app.InfoLogger.Println("Database connected")
 	x.init("./dump.sql")
 	x.load("./DEINFO_AB_FEIRASLIVRES_2014.csv")
 	return db
@@ -30,12 +31,12 @@ func (s *sqlite) init(filename string) {
 	// Read file
 	content, err := ioutil.ReadFile(filename)
 	if err != nil {
-		fmt.Println(err.Error())
+		app.ErrorLogger.Println(err.Error())
 	}
 	// Execute all
 	_, err = s.db.Exec(string(content))
 	if err != nil {
-		fmt.Println(err.Error())
+		app.ErrorLogger.Println(err.Error())
 	}
 }
 
@@ -62,6 +63,6 @@ func (s *sqlite) load(filename string) {
 	}
 	_, err := s.db.Exec(into + values)
 	if err != nil {
-		fmt.Println(err.Error())
+		app.ErrorLogger.Println(err.Error())
 	}
 }

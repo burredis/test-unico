@@ -24,6 +24,7 @@ import (
 // @host localhost:8000
 // @BasePath /
 func main() {
+	app.InfoLogger.Println("Started Application")
 	db := repository.Conn()
 	defer db.Close()
 
