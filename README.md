@@ -4,14 +4,20 @@
 RESTful API em Golang e SQLite
 
 ## Utilização
-Utilizar os comandos a seguir para iniciar o projeto:
+Para utilizar o projeto é preciso realizar os passos a seguir:
+
+#### Projeto
+
+    git clone git@github.com:burredis/test-unico.git
+
+#### Start
 
     make run
 
-### REF.:
-https://medium.com/mobicareofficial/criando-uma-aplica%C3%A7%C3%A3o-em-golang-utilizando-mysql-redis-gorm-docker-e-docker-compose-7a4f40a68719
+## Documentação
+http://localhost:8000/swagger/index.html
 
-https://superuser.com/questions/1354368/mysql-error-in-loading-csv-file-data-into-table
+### REF.:
 
 https://www.thepolyglotdeveloper.com/2017/04/using-sqlite-database-golang-application/
 
@@ -21,4 +27,4 @@ https://eltonminetto.dev/post/2020-06-29-clean-architecture-2anos-depois/
 
 https://www.restapiexample.com/golang-tutorial/write-log-files-in-golang/
 
-https://github.com/labstack/echo
+https://viblo.asia/p/document-golang-restful-api-with-swagger-OeVKB17Q5kW

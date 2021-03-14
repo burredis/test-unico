@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strconv"
 	"unico/app"
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 )
 
 type FeiraLivreAdapter struct {
@@ -17,6 +17,16 @@ func NewAdapter(service FeiraLivreService) FeiraLivreAdapter {
 	}
 }
 
+// CreateHTTPHandler godoc
+// @Summary Create a feiralivre
+// @Description Create a new feiralivre item
+// @Tags feiralivre
+// @Accept json
+// @Produce json
+// @Param feiralivre body FeiraLivre true "New feiralivre"
+// @Success 204
+// @Failure 400 {object} app.Response
+// @Router /feiralivre [post]
 func (a FeiraLivreAdapter) CreateHTTPHandler(c echo.Context) error {
 	feiraLivre := FeiraLivre{}
 	err := c.Bind(&feiraLivre)

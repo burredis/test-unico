@@ -7,10 +7,20 @@ import (
 	"unico/app/helper/io"
 	"unico/feiralivre"
 
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+	echo "github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+	echoSwagger "github.com/swaggo/echo-swagger"
+	_ "github.com/swaggo/echo-swagger/example/docs"
 )
 
+// @title RESTful API em Golang e SQLite
+// @version 1.0
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host localhost:8000
+// @BasePath /
 func main() {
 	database := "./unico.db"
 	io.Removefile(database)
@@ -38,6 +48,7 @@ func main() {
 	f.PATCH("/:id", adapter.UpdateHTTPHandler)
 	f.DELETE("/:id", adapter.RemoveHTTPHandler)
 
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 	e.Logger.Fatal(e.Start(":8000"))
 }
 
