@@ -227,6 +227,7 @@ curl --header "Content-Type: application/json" \
 ```json
 {}
 ```
+Caso utilize o Postman, o arquivo `unico.postman_collection.json` já tem alguns exemplos de utilização dos endpoints
 
 ### Documentação
 http://localhost:8000/swagger/index.html
