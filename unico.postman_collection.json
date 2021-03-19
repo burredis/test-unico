@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "3bab5621-239c-46b2-a25e-34c105e2d22c",
+		"name": "test-unico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/feiraslivres",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"teste\",\n    \"lat\": \"-43.443,00\",\n    \"lng\": \"-43.443,00\",\n    \"setcens\": \"\",\n    \"areap\": \"\",\n    \"coddist\": \"\",\n    \"distrito\": \"\",\n    \"codsubpref\": \"\",\n    \"subprefe\": \"\",\n    \"regiao5\": \"\",\n    \"regiao8\": \"\",\n    \"registro\": \"\",\n    \"logradouro\": \"\",\n    \"numero\": \"\",\n    \"bairro\": \"\",\n    \"referencia\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/feiraslivres?q=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"feiraslivres"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/feiraslivres",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lat\": \"-46550164\",\n    \"lng\": \"-23558733\",\n    \"setcens\": \"355030885000091\",\n    \"areap\": \"3550308005040\",\n    \"coddist\": \"87\",\n    \"distrito\": \"VILA FORMOSA\",\n    \"codsubpref\": \"26\",\n    \"subprefe\": \"ARICANDUVA-FORMOSA-CARRAO\",\n    \"regiao5\": \"Leste\",\n    \"regiao8\": \"Leste 1\",\n    \"nome\": \"VILA FORMOSA\",\n    \"registro\": \"4041-0\",\n    \"logradouro\": \"RUA MARAGOJIPE\",\n    \"numero\": \"S/N\",\n    \"bairro\": \"VL FORMOSA\",\n    \"referencia\": \"TV RUA PRETORIA\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/feiraslivres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"feiraslivres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/feiraslivres/:id",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lat\": \"-46681941\",\n    \"lng\": \"-23752316\",\n    \"setcens\": \"355030830000054\",\n    \"areap\": \"3550308005283\",\n    \"coddist\": \"30\",\n    \"distrito\": \"GRAJAU\",\n    \"codsubpref\": \"19\",\n    \"subprefe\": \"CAPELA DO SOCORRO\",\n    \"regiao5\": \"Sul\",\n    \"regiao8\": \"Sul 2\",\n    \"nome\": \"COCAIA\",\n    \"registro\": \"1147-9\",\n    \"logradouro\": \"AV TRINTA E SETE CONJ FARIA LIMA\",\n    \"numero\": \"S/N\",\n    \"bairro\": \"PQ COCAIA\",\n    \"referencia\": \"RUA CAMPO DO ARAVIL\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/feiraslivres/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"feiraslivres",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/feiraslivres/:id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"teste\",\n    \"lat\": \"-43.443,00\",\n    \"lng\": \"-43.443,00\",\n    \"setcens\": \"\",\n    \"areap\": \"\",\n    \"coddist\": \"\",\n    \"distrito\": \"\",\n    \"codsubpref\": \"\",\n    \"subprefe\": \"\",\n    \"regiao5\": \"\",\n    \"regiao8\": \"\",\n    \"registro\": \"\",\n    \"logradouro\": \"\",\n    \"numero\": \"\",\n    \"bairro\": \"\",\n    \"referencia\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/feiraslivres/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"feiraslivres",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/feiraslivres/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/feiraslivres/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"feiraslivres",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
