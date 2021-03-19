@@ -40,7 +40,7 @@
                 }
             }
         },
-        "/feiralivre": {
+        "/feiraslivres": {
             "get": {
                 "description": "Search item by query",
                 "consumes": [
@@ -96,7 +96,7 @@
                 }
             }
         },
-        "/feiralivre/:id": {
+        "/feiraslivres/:id": {
             "get": {
                 "description": "Get item by id",
                 "consumes": [

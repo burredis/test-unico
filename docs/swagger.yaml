@@ -71,7 +71,7 @@ paths:
             $ref: '#/definitions/app.Response'
       tags:
       - API
-  /feiralivre:
+  /feiraslivres:
     get:
       consumes:
       - application/json
@@ -107,7 +107,7 @@ paths:
             $ref: '#/definitions/app.Response'
       tags:
       - API
-  /feiralivre/:id:
+  /feiraslivres/:id:
     delete:
       consumes:
       - application/json

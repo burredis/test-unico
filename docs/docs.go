@@ -55,7 +55,7 @@ var doc = `{
                 }
             }
         },
-        "/feiralivre": {
+        "/feiraslivres": {
             "get": {
                 "description": "Search item by query",
                 "consumes": [
@@ -111,7 +111,7 @@ var doc = `{
                 }
             }
         },
-        "/feiralivre/:id": {
+        "/feiraslivres/:id": {
             "get": {
                 "description": "Get item by id",
                 "consumes": [
